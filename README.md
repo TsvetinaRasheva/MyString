@@ -1,3 +1,3 @@
 # MyString
 
-This is my version of String.
+My version of String class with some tests.
