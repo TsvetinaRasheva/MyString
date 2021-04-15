@@ -69,7 +69,7 @@ bool String::operator!=(const String& other) {
 char& String::operator[](size_t index) {
 	if (index < size)
 	{
-		return buffer[index - 1];
+		return buffer[index];
 	}
 
 	std::cout << "Error: [Out of range exception]";
@@ -80,7 +80,7 @@ char& String::operator[](size_t index) {
 const char& String::operator[](size_t index) const {
 	if (index < size)
 	{
-		return buffer[index - 1];
+		return buffer[index];
 	}
 
 	std::cout << "Error: [Out of range exception]";
@@ -90,8 +90,14 @@ const char& String::operator[](size_t index) const {
 
 void String::resize(size_t new_size) {
 	if (!c_str()) {
-		buffer = new char[new_size];
+		buffer = new char[new_size+1];
 		size = new_size;
+		return;
+	}
+
+	if (new_size < size)
+	{
+		std::cout << "Invalid operation!";
 		return;
 	}
 
@@ -118,9 +124,10 @@ void String::reverse() {
 		temp[i] = this->buffer[size - 1 - i];
 	}
 
+	temp[size] = '\0';
+
 	delete[] buffer;
 	buffer = temp;
-
 }
 
 bool String::empty() {

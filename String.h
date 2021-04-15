@@ -53,15 +53,16 @@ public:
 
     void set_buffer(const char* _buffer) {
 
-        size_t size = strlen(_buffer);
-        this->buffer = new char[size+1];
+        size_t _size = strlen(_buffer);
+        this->buffer = new char[_size +1];
 
-        for (size_t i = 0; i < size; i++)
+        for (size_t i = 0; i < _size; i++)
         {
             this->buffer[i] = _buffer[i];
         }
 
-        this->buffer[size] = '\0';
+        this->buffer[_size] = '\0';
+        this->size = _size;
     }
 
     void set_size() {
