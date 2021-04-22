@@ -134,6 +134,21 @@ bool String::empty() {
 	return size == 0;
 }
 
+char* String::getSubstring(size_t startIndex, size_t count)
+{
+	char* result = new char[count + 1];
+	int index = 0;
+
+	for (size_t i = startIndex; i < (startIndex + count); i++)
+	{
+		result[index++] = buffer[i];
+	}
+	result[index] = '\0';
+
+	return result;
+}
+
+
 void String::copy(const String& new_string) {
 	this->size = new_string.get_size();
 
@@ -194,4 +209,37 @@ void String::trimSpaces() {
 	buffer[index] = '\0';
 	this->size = index;
 	
+}
+
+std::ostream& operator<<(std::ostream& out, const String& str) {
+
+	out << str.c_str();
+	return out;
+}
+
+std::istream& operator>>(std::istream& in, String& str) {
+
+	char arr[500];
+	in.getline(arr, 500);
+	size_t index = 0, i = 0;
+	char* temp = new char[500];
+
+	while (arr[i] != '\0')
+	{
+		if (arr[i] < 33 || arr[i] > 126)
+		{
+			++i;
+			continue;
+		}
+		temp[index] = arr[i];
+		++index;
+		++i;
+	}
+	temp[index] = '\0';
+	
+	delete[] str.buffer;
+	str.buffer = temp;
+	str.size = index;
+
+	return in;
 }

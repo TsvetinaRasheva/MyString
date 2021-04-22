@@ -158,6 +158,15 @@ TEST_CASE("Testing set_size() method") {
 
 int main() {
 
+	String str1 = String();
+	std::cin >> str1;
+
+	std::cout << str1;
+	std::cout << str1.get_size();
+
+
+
+	/*
 	String str = String("Ivan");
 
 	String str1 = String();
@@ -243,6 +252,6 @@ int main() {
 	std::cout << std::endl;
 
 	doctest::Context().run();
-
+	*/
 	return 0;
 }

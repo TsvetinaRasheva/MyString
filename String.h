@@ -41,10 +41,16 @@ public:
 
     bool empty();
 
+    char* getSubstring(size_t, size_t);
 
     const char* c_str() const {
         return this->buffer;
     }
+
+
+    friend std::ostream& operator<<(std::ostream&, const String&);
+
+    friend std::istream& operator>>(std::istream&, String&);
 
 
     size_t get_size() const {
